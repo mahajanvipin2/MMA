@@ -1,10 +1,6 @@
 package com.actual.appiumapplication;
 
-import android.content.Context;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
-import android.net.wifi.WifiInfo;
-import android.net.wifi.WifiManager;
+
 import android.support.v7.app.AppCompatActivity;
 
 import com.example.appiumapplication.MainActivity;

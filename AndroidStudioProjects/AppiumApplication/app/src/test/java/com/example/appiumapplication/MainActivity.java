@@ -1,7 +1,6 @@
 package com.example.appiumapplication;
 
 import com.actual.appiumapplication.CommonFunctions;
-import com.actual.appiumapplication.ExcelLib;
 
 import org.openqa.selenium.By;
 import org.testng.Assert;
