@@ -1,0 +1,62 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 28
+    defaultConfig {
+        applicationId "com.example.appiumapplication"
+        minSdkVersion 26
+        targetSdkVersion 28
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+
+    packagingOptions {
+        exclude 'META-INF/DEPENDENCIES'
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+
+dependencies {
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation 'com.android.support:appcompat-v7:28.0.0'
+    implementation 'com.android.support.constraint:constraint-layout:1.1.3'
+    implementation 'com.android.support:design:28.0.0'
+    //testImplementation 'junit:junit:4.12'
+    implementation files('libs/byte-buddy-1.7.5.jar')
+    implementation files('libs/client-combined-3.6.0.jar')
+    implementation files('libs/client-combined-3.6.0-sources.jar')
+    implementation files('libs/commons-codec-1.10.jar')
+    implementation files('libs/commons-logging-1.2.jar')
+    implementation files('libs/gson-2.8.0.jar')
+    implementation files('libs/guava-23.0.jar')
+    implementation files('libs/httpclient-4.5.3.jar')
+    implementation files('libs/httpcore-4.4.6.jar')
+    implementation files('libs/jna-4.1.0.jar')
+    implementation files('libs/jna-platform-4.1.0.jar')
+    implementation files('libs/commons-exec-1.3.jar')
+    implementation files('libs/commons-lang3-3.1.jar')
+    implementation files('libs/xmlbeans-3.0.2.jar')
+    implementation files('libs/curvesapi-1.05.jar')
+    implementation files('libs/jxl-2.6.jar')
+    androidTestImplementation 'org.assertj:assertj-core:2.0.0'
+    implementation files('libs/extentreports-2.05.jar')
+    implementation files('libs/org.testng_6.14.2.r201802161450.jar')
+
+}
+
+
+android {
+    // ...
+    testOptions {
+        unitTests.returnDefaultValues = true
+
+    }
+}
