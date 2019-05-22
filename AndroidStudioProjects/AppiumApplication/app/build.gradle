@@ -49,7 +49,11 @@ dependencies {
     androidTestImplementation 'org.assertj:assertj-core:2.0.0'
     implementation files('libs/extentreports-2.05.jar')
     implementation files('libs/org.testng_6.14.2.r201802161450.jar')
-
+    implementation files('libs/commons-io-2.6.jar')
+    implementation files('libs/commons-io-2.6-javadoc.jar')
+    implementation files('libs/commons-io-2.6-sources.jar')
+    implementation files('libs/commons-io-2.6-test-sources.jar')
+    implementation files('libs/commons-io-2.6-tests.jar')
 }
 
 

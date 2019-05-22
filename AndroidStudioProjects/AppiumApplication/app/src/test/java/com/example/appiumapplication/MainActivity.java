@@ -1,8 +1,8 @@
 package com.example.appiumapplication;
 
 import com.actual.appiumapplication.CommonFunctions;
-
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeClass;
@@ -40,7 +40,7 @@ public class MainActivity  {
         }
 
     @Test
-    public void identifyVersion()  {
+    public void identifyVersion() throws IOException {
         cap.appendLog("Closing the MMA tour");
         //Below statement closes MMA tour
         androidDriver.findElement((By.xpath("//android.widget.RelativeLayout[contains(@resource-id,'de.telekom.android.customercenter:id/closeButton')]"))).click();
@@ -61,21 +61,22 @@ public class MainActivity  {
         cap.appendLog("Version Number of MeinMeganta is :" + versionNum);
         try {
         Assert.assertEquals("Version 8.0 (1895)", versionNum, "Version of MMA doesn't match");
+
         } catch (AssertionError t) {
             cap.appendLog("Actual Version not matched with Expected Version. TC Failed");
+            cap.appendLog(t.toString());
             cap.appendLog("End of TestCase: identifyVersion");
-            cap.appendLog("*****************************************************************************");
+            cap.appendLog("**********Version Number of MeinMeganta is :Version 8.0 (1895)*******************************************************************");
             t.printStackTrace();
             Assert.fail();
         }
         cap.appendLog("Version Verified and TC Passed");
-
         cap.appendLog("End of TestCase: identifyVersion");
         cap.appendLog("*****************************************************************************");
     }
 
     @Test
-    public void mitteilungen() throws IOException, BiffException, InterruptedException {
+    public void mitteilungen() throws IOException {
         cap.appendLog("Starting of TC: mitteilungen");
         androidDriver.pressKeyCode(AndroidKeyCode.BACK);
         cap.appendLog("Click on Mehr link");
@@ -134,9 +135,7 @@ public class MainActivity  {
                 switchToggles.get(h).click();
                 h++;
             }
-
         }
-        Assert.assertTrue(1 == 1);
 
         cap.appendLog("End of TestCase: mitteilungen");
         cap.appendLog("*****************************************************************************");
@@ -144,7 +143,7 @@ public class MainActivity  {
 
 
     @Test
-    public void nochData() {
+    public void nochData() throws IOException {
         cap.appendLog("Click on Start Button");
         //Below statement will click on Start button
         androidDriver.findElement(By.xpath("//*[contains(@resource-id,'de.telekom.android.customercenter:id/main_activity_tabbar_start')]")).click();
@@ -158,6 +157,7 @@ public class MainActivity  {
         catch (NullPointerException e)
         {
             cap.appendLog("MSISDN is blank. TC Failed");
+            cap.appendLog(e.toString());
             cap.appendLog("End of TestCase: nochData");
             cap.appendLog("*****************************************************************************");
             e.printStackTrace();
@@ -173,6 +173,7 @@ public class MainActivity  {
         catch(NullPointerException e)
         {
             cap.appendLog("Type of Sim is blank. TC Failed");
+            cap.appendLog(e.toString());
             cap.appendLog("End of TestCase: nochData");
             cap.appendLog("*****************************************************************************");
             e.printStackTrace();
@@ -186,6 +187,7 @@ public class MainActivity  {
        catch (org.openqa.selenium.NoSuchElementException e)
        {
            cap.appendLog("Available data Element does not exist");
+           cap.appendLog(e.toString());
            e.printStackTrace();
        }
         try {
@@ -194,6 +196,7 @@ public class MainActivity  {
         catch (org.openqa.selenium.NoSuchElementException e)
         {
             cap.appendLog("Data element does not exist");
+            cap.appendLog(e.toString());
             e.printStackTrace();
         }
 
@@ -203,6 +206,7 @@ public class MainActivity  {
         catch (org.openqa.selenium.NoSuchElementException e)
         {
             cap.appendLog("Measure element does not exist");
+            cap.appendLog(e.toString());
             e.printStackTrace();
         }
 
@@ -212,6 +216,7 @@ public class MainActivity  {
         catch (NullPointerException e)
         {
             cap.appendLog("Data is not Available. TC Failed");
+            cap.appendLog(e.toString());
             cap.appendLog("End of TestCase: nochData");
             cap.appendLog("*****************************************************************************");
             e.printStackTrace();
@@ -223,6 +228,7 @@ public class MainActivity  {
         catch (NullPointerException e)
         {
             cap.appendLog("Data is not Available. TC Failed");
+            cap.appendLog(e.toString());
             cap.appendLog("End of TestCase: nochData");
             cap.appendLog("*****************************************************************************");
             e.printStackTrace();
@@ -234,13 +240,14 @@ public class MainActivity  {
         catch (NullPointerException e)
         {
             cap.appendLog("Data is not Available. TC Failed");
+            cap.appendLog(e.toString());
             cap.appendLog("End of TestCase: nochData");
             cap.appendLog("*****************************************************************************");
             e.printStackTrace();
             Assert.fail();
         }
         cap.appendLog("Available Data is :" + availableData + " " + data + " " + measure);
-
+  //      cap.screenCapture(androidDriver);
         System.out.println("Available Data is :" + availableData + " " + data + " " + measure);
         cap.appendLog("Data is available. Testcase Passed");
         cap.appendLog("End of TestCase: nochData");

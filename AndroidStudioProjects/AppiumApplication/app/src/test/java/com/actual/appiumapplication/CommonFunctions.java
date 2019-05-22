@@ -1,19 +1,14 @@
 package com.actual.appiumapplication;
 
-
+import org.apache.commons.io.FileUtils;
 import android.support.v7.app.AppCompatActivity;
 
-import com.example.appiumapplication.MainActivity;
-import com.example.appiumapplication.NetworkUtil;
 
-import net.bytebuddy.implementation.Implementation;
-
-import org.apache.xmlbeans.impl.xb.xsdschema.Public;
-import org.openqa.selenium.By;
-import org.openqa.selenium.NoSuchElementException;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Reporter;
 
 import java.io.BufferedWriter;
 import java.io.File;
@@ -21,18 +16,17 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.net.URL;
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-import java.time.format.FormatStyle;
+
 import java.util.Date;
+import java.util.logging.FileHandler;
 
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.android.AndroidDriver;
 import jxl.read.biff.BiffException;
-import jxl.write.DateTime;
 
 
-public class CommonFunctions extends AppCompatActivity {
+
+public class CommonFunctions {
     AndroidDriver androidDriver = null;
     DesiredCapabilities capabilities = null;
     ExcelLib excel_Device = null;
@@ -64,35 +58,7 @@ public class CommonFunctions extends AppCompatActivity {
         return androidDriver;
     }
 
-/*
-    public boolean waitForPresence(AndroidDriver driver, int timeLimitInSeconds, String targetResourceId) {
-        Boolean isElementPresent;
-        try {
-            mobileElement = (MobileElement) driver.findElementByAndroidUIAutomator("new UiSelector().resourceId(\"" + targetResourceId + "\")");
-            WebDriverWait wait = new WebDriverWait(driver, timeLimitInSeconds);
-            wait.until(ExpectedConditions.visibilityOf(mobileElement));
-            isElementPresent = mobileElement.isDisplayed();
-            return isElementPresent;
-        } catch (Exception e) {
-            isElementPresent = false;
-            System.out.println(e.getMessage());
-            return isElementPresent;
-        }
-    }
 
-    public boolean isElementPresent(AndroidDriver driver, String strxpath) {
-
-        try {
-
-            driver.findElement(By.xpath(strxpath));
-            return true;
-
-        } catch (NoSuchElementException e) {
-
-            return false;
-        }
-    }
-*/
     public void appendLog(String text) {
         File logFile = new File("C:/Log/log.file");
         if (!logFile.exists()) {
@@ -119,5 +85,12 @@ public class CommonFunctions extends AppCompatActivity {
         }
     }
 
+
+    public void screenCapture(AndroidDriver ad) throws IOException {
+        File srcFile= ad.getScreenshotAs(OutputType.FILE);
+        File screenshotName= new File("C:\\Log\\screenshots");
+        FileUtils.copyFile(srcFile,screenshotName);
+        Reporter.log("<br><img src='"+screenshotName+"' height='400' width='400'/>");
+    }
 }
 

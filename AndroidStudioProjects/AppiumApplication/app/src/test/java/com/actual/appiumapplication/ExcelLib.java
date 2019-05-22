@@ -19,10 +19,7 @@ import jxl.read.biff.BiffException;
             IOException {
         // Initialize
         wrkbook = Workbook.getWorkbook(new File(ExcelSheetPath));
-        // For Demo purpose the excel sheet path is hardcoded, but not
-        // recommended :)
         wrksheet = wrkbook.getSheet(SheetName);
-
         ColumnDictionary();
     }
 
@@ -38,12 +35,7 @@ import jxl.read.biff.BiffException;
 
     // Create Column Dictionary to hold all the Column Names
     public static void ColumnDictionary() {
-        // Iterate through all the columns in the Excel sheet and store the
-        // value in Hashtable
         for (int col = 0; col < wrksheet.getColumns(); col++) {
-            //dict.put(ReadCell(col,1),col)
-            //String value = ReadCell(col,0);
-          //  System.out.println("Value "+value);
             dict.put(ReadCell(col, 0), col);
         }
     }
@@ -59,5 +51,4 @@ import jxl.read.biff.BiffException;
 
         }
     }
-
 }

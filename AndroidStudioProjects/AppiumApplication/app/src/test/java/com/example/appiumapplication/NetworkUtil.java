@@ -1,4 +1,4 @@
-package com.example.appiumapplication;
+/*package com.example.appiumapplication;
 
 
 import android.content.Context;
@@ -40,5 +40,6 @@ public class NetworkUtil {
             status = "Not connected to Internet";
         }
         return status;
-    }*/
+    }
 }
+*/
